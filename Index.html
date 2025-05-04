@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Earnova Labs - RWX Token</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: sans-serif; margin: 20px; background: #f4f4f4; }
+    .container { background: white; padding: 20px; border-radius: 10px; max-width: 600px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h1 { text-align: center; color: #7b3fe4; }
+    .wallet { font-weight: bold; word-break: break-all; color: #333; }
+    .section { margin-top: 20px; }
+    .label { font-size: 14px; margin-bottom: 5px; }
+    input, button { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; }
+    button { background: #7b3fe4; color: white; border: none; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Earnova Labs - RWX</h1>
+
+    <div class="section">
+      <div class="label">Wallet Address:</div>
+      <div class="wallet" id="walletAddress">Connect Wallet</div>
+    </div>
+
+    <div class="section">
+      <div class="label">Referral Link:</div>
+      <input type="text" id="refLink" readonly>
+    </div>
+
+    <div class="section">
+      <button onclick="buyToken()">Buy RWX Token</button>
+      <button onclick="sellToken()">Sell RWX Token</button>
+    </div>
+  </div>
+
+  <script>
+    async function connectWallet() {
+      if (window.ethereum) {
+        try {
+          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+          const wallet = accounts[0];
+          document.getElementById('walletAddress').innerText = wallet;
+          document.getElementById('refLink').value = location.href + '?ref=' + wallet;
+        } catch (err) {
+          alert('Connection failed!');
+        }
+      } else {
+        alert('MetaMask not detected!');
+      }
+    }
+
+    function buyToken() {
+      alert("Buy token logic yahan aayega (Polygon chain use karna).");
+    }
+
+    function sellToken() {
+      alert("Sell token logic yahan aayega.");
+    }
+
+    // Auto connect wallet on load
+    window.addEventListener('load', connectWallet);
+  </script>
+</body>
+</html>
