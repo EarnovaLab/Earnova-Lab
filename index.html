@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Earnova Labs - Signup/Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,7 +14,7 @@
             <label for="username">Username</label>
             <input type="text" id="username" required>
 
-            <label for="referral">Referral Wallet Address</label>
+            <label for="referral">Referred By</label>
             <input type="text" id="referral" readonly>
 
             <button type="submit">Sign Up</button>
@@ -43,14 +44,11 @@
                     referralInput.value = walletAddress;
                     walletDisplay.innerText = walletAddress;
 
-                    // Check if already signed up
                     const isSignedUp = localStorage.getItem(walletAddress + '_username');
                     if (isSignedUp) {
-                        // Show login section
                         signupSection.style.display = 'none';
                         loginSection.style.display = 'block';
                     } else {
-                        // Show signup section
                         signupSection.style.display = 'block';
                         loginSection.style.display = 'none';
                     }
@@ -66,10 +64,7 @@
             e.preventDefault();
             const username = document.getElementById('username').value;
             const wallet = referralInput.value;
-
-            // Save user in localStorage (Temporary Demo)
             localStorage.setItem(wallet + '_username', username);
-
             alert("Signup successful!");
             location.reload();
         });
@@ -85,7 +80,6 @@
             }
         });
 
-        // Auto connect wallet on page load
         window.addEventListener('load', connectWallet);
     </script>
 </body>
