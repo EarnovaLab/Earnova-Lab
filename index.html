@@ -1,35 +1,92 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/web3@1.6.0/dist/web3.min.js"></script>
-    <title>Earnova Labs</title>
-    <link rel="stylesheet" href="styles.css"> <!-- CSS ka link -->
+    <title>Earnova Labs - Signup/Login</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Signup Form -->
-    <div id="signup-section">
-        <h2>Signup</h2>
+    <!-- Signup Section -->
+    <div class="container" id="signup-section">
+        <h2>Sign Up</h2>
         <form id="signup-form">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required><br><br>
-            
-            <label for="referral">Referral Wallet Address:</label>
-            <input type="text" id="referral" name="referral" readonly><br><br>
-            
+            <label for="username">Username</label>
+            <input type="text" id="username" required>
+
+            <label for="referral">Referral Wallet Address</label>
+            <input type="text" id="referral" readonly>
+
             <button type="submit">Sign Up</button>
         </form>
     </div>
 
-    <!-- Login Form -->
-    <div id="login-section" style="display:none;">
+    <!-- Login Section -->
+    <div class="container" id="login-section">
         <h2>Login</h2>
-        <p>Your wallet address: <span id="wallet-address"></span></p>
+        <p>Your Wallet Address:</p>
+        <p id="wallet-address"></p>
         <button id="login-button">Login</button>
     </div>
 
-    <script src="app.js"></script> <!-- JavaScript file ka link -->
+    <!-- JS Logic -->
+    <script>
+        const signupSection = document.getElementById('signup-section');
+        const loginSection = document.getElementById('login-section');
+        const referralInput = document.getElementById('referral');
+        const walletDisplay = document.getElementById('wallet-address');
+
+        async function connectWallet() {
+            if (window.ethereum) {
+                try {
+                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                    const walletAddress = accounts[0];
+                    referralInput.value = walletAddress;
+                    walletDisplay.innerText = walletAddress;
+
+                    // Check if already signed up
+                    const isSignedUp = localStorage.getItem(walletAddress + '_username');
+                    if (isSignedUp) {
+                        // Show login section
+                        signupSection.style.display = 'none';
+                        loginSection.style.display = 'block';
+                    } else {
+                        // Show signup section
+                        signupSection.style.display = 'block';
+                        loginSection.style.display = 'none';
+                    }
+                } catch (err) {
+                    alert("Wallet connection failed!");
+                }
+            } else {
+                alert("Please install MetaMask or Trust Wallet in browser.");
+            }
+        }
+
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const wallet = referralInput.value;
+
+            // Save user in localStorage (Temporary Demo)
+            localStorage.setItem(wallet + '_username', username);
+
+            alert("Signup successful!");
+            location.reload();
+        });
+
+        document.getElementById('login-button').addEventListener('click', function() {
+            const wallet = walletDisplay.innerText;
+            const user = localStorage.getItem(wallet + '_username');
+            if (user) {
+                alert("Welcome back, " + user + "!");
+                // Future: Redirect to dashboard
+            } else {
+                alert("User not found!");
+            }
+        });
+
+        // Auto connect wallet on page load
+        window.addEventListener('load', connectWallet);
+    </script>
 </body>
 </html>
