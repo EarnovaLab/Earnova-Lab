@@ -1,86 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Earnova Labs - Signup/Login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+  <title>Earnova Labs - Join & Earn RWX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f4f4f4; }
+    .box { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    input, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
+    button { background: #4CAF50; color: white; font-weight: bold; }
+    #walletAddress { font-size: 0.9em; word-break: break-all; }
+  </style>
 </head>
 <body>
-    <!-- Signup Section -->
-    <div class="container" id="signup-section">
-        <h2>Sign Up</h2>
-        <form id="signup-form">
-            <label for="username">Username</label>
-            <input type="text" id="username" required>
+  <div class="box">
+    <h2>Join & Earn RWX</h2>
+    <label>Wallet Address:</label>
+    <p id="walletAddress">Not connected</p>
 
-            <label for="referral">Referred By</label>
-            <input type="text" id="referral" readonly>
+    <label>Referred By (wallet):</label>
+    <input type="text" id="referrer" readonly>
 
-            <button type="submit">Sign Up</button>
-        </form>
-    </div>
+    <label>Username:</label>
+    <input type="text" id="username" placeholder="Choose a username">
 
-    <!-- Login Section -->
-    <div class="container" id="login-section">
-        <h2>Login</h2>
-        <p>Your Wallet Address:</p>
-        <p id="wallet-address"></p>
-        <button id="login-button">Login</button>
-    </div>
+    <button onclick="connectWallet()">🔗 Connect Wallet</button>
+    <button onclick="submitJoin()">🚀 Join Now</button>
+  </div>
 
-    <!-- JS Logic -->
-    <script>
-        const signupSection = document.getElementById('signup-section');
-        const loginSection = document.getElementById('login-section');
-        const referralInput = document.getElementById('referral');
-        const walletDisplay = document.getElementById('wallet-address');
+  <script>
+    let userAddress = "";
+    const ref = new URLSearchParams(window.location.search).get('ref');
+    document.getElementById("referrer").value = ref || "None";
 
-        async function connectWallet() {
-            if (window.ethereum) {
-                try {
-                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                    const walletAddress = accounts[0];
-                    referralInput.value = walletAddress;
-                    walletDisplay.innerText = walletAddress;
+    async function connectWallet() {
+      if (window.ethereum) {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        userAddress = accounts[0];
+        document.getElementById("walletAddress").innerText = userAddress;
+      } else {
+        alert("Please install Metamask!");
+      }
+    }
 
-                    const isSignedUp = localStorage.getItem(walletAddress + '_username');
-                    if (isSignedUp) {
-                        signupSection.style.display = 'none';
-                        loginSection.style.display = 'block';
-                    } else {
-                        signupSection.style.display = 'block';
-                        loginSection.style.display = 'none';
-                    }
-                } catch (err) {
-                    alert("Wallet connection failed!");
-                }
-            } else {
-                alert("Please install MetaMask or Trust Wallet in browser.");
-            }
-        }
+    function submitJoin() {
+      const username = document.getElementById("username").value;
+      const referrer = document.getElementById("referrer").value;
 
-        document.getElementById('signup-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const wallet = referralInput.value;
-            localStorage.setItem(wallet + '_username', username);
-            alert("Signup successful!");
-            location.reload();
+      if (!userAddress) {
+        alert("Connect your wallet first!");
+        return;
+      }
+
+      if (!username) {
+        alert("Enter a username!");
+        return;
+      }
+
+      const url = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec"; // 🔁 Replace with your own
+      fetch(`${url}?wallet=${userAddress}&referrer=${referrer}&username=${username}`)
+        .then(res => res.text())
+        .then(data => {
+          alert("✅ Registered Successfully!");
         });
-
-        document.getElementById('login-button').addEventListener('click', function() {
-            const wallet = walletDisplay.innerText;
-            const user = localStorage.getItem(wallet + '_username');
-            if (user) {
-                alert("Welcome back, " + user + "!");
-                // Future: Redirect to dashboard
-            } else {
-                alert("User not found!");
-            }
-        });
-
-        window.addEventListener('load', connectWallet);
-    </script>
+    }
+  </script>
 </body>
 </html>
