@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Earnova Labs DApp</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: radial-gradient(circle, #0d0d0d, #1a1a1a);
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
       color: #ffffff;
       display: flex;
       flex-direction: column;
@@ -17,70 +19,111 @@
       min-height: 100vh;
       text-align: center;
       padding: 20px;
+      overflow-x: hidden;
     }
 
     .logo {
       width: 120px;
       margin-bottom: 20px;
-      filter: drop-shadow(0 0 20px #00bfff);
+      filter: drop-shadow(0 0 20px #00ffe1);
     }
 
     h1 {
-      font-size: 2em;
-      color: #00bfff;
+      font-size: 2.5em;
+      color: #00ffe1;
       margin: 0;
+      text-shadow: 0 0 10px #00ffe1;
     }
 
     p {
-      font-size: 1em;
+      font-size: 1.1em;
       margin-top: 10px;
       color: #cccccc;
     }
 
     .button {
-      margin-top: 30px;
-      padding: 12px 24px;
+      margin-top: 20px;
+      padding: 14px 28px;
       border: none;
-      border-radius: 8px;
-      background-color: #00bfff;
-      color: #fff;
+      border-radius: 10px;
+      background: #00ffe1;
+      color: #000;
       font-size: 1em;
       cursor: pointer;
+      transition: background 0.3s ease;
+      box-shadow: 0 0 10px #00ffe1, 0 0 20px #00ffe1 inset;
     }
 
     .button:hover {
-      background-color: #0099cc;
+      background-color: #00ccbb;
     }
 
     .wallet-address {
       margin-top: 20px;
-      font-size: 0.9em;
+      font-size: 0.95em;
       color: #99ffcc;
+    }
+
+    .disconnect {
+      margin-top: 10px;
+      background: #ff3b3b;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .disconnect:hover {
+      background: #cc2929;
     }
   </style>
 </head>
 <body>
   <img src="earnova-logo.png" alt="Earnova Labs Logo" class="logo" />
   <h1>Welcome to Earnova Labs</h1>
-  <p>Build your future with SIP, Staking & Rewards on RWX Token</p>
-  <button class="button" onclick="connectWallet()">Connect Wallet</button>
+  <p>The Future of Crypto SIP, Staking & Rewards powered by RWX</p>
+
+  <button class="button" id="connectButton" onclick="connectWallet()">Connect Polygon Wallet</button>
   <div class="wallet-address" id="walletAddress">Wallet not connected</div>
+  <button class="disconnect" id="disconnectButton" onclick="disconnectWallet()">Disconnect</button>
+
   <button class="button" onclick="location.href='sip.html'">View SIP Plans</button>
   <button class="button" onclick="location.href='dashboard.html'">Open Dashboard</button>
 
   <script>
+    let currentAccount = null;
+
     async function connectWallet() {
       if (window.ethereum) {
         try {
+          const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+          if (chainId !== '0x89') { // 137 = Polygon Mainnet
+            await window.ethereum.request({
+              method: 'wallet_switchEthereumChain',
+              params: [{ chainId: '0x89' }]
+            });
+          }
+
           const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-          const address = accounts[0];
-          document.getElementById('walletAddress').innerText = 'Connected: ' + address.slice(0, 6) + '...' + address.slice(-4);
+          currentAccount = accounts[0];
+          document.getElementById('walletAddress').innerText = 'Connected: ' + currentAccount.slice(0, 6) + '...' + currentAccount.slice(-4);
+          document.getElementById('disconnectButton').style.display = 'inline-block';
+          document.getElementById('connectButton').style.display = 'none';
         } catch (error) {
-          console.error("User denied wallet connection");
+          alert("Connection failed: " + error.message);
         }
       } else {
-        alert("MetaMask not detected. Please install it to use this DApp.");
+        alert("MetaMask not detected. Please install MetaMask to use this DApp.");
       }
+    }
+
+    function disconnectWallet() {
+      currentAccount = null;
+      document.getElementById('walletAddress').innerText = 'Wallet not connected';
+      document.getElementById('connectButton').style.display = 'inline-block';
+      document.getElementById('disconnectButton').style.display = 'none';
     }
   </script>
 </body>
