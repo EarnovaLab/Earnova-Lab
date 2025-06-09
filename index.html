@@ -3,195 +3,118 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Earnova Labs DApp</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Earnova Labs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
       background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
-      color: #ffffff;
+      color: #00ffff;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
+      height: 100vh;
       overflow: hidden;
     }
-
-    .logo-wrapper {
+    .logo-container {
       position: relative;
       width: 180px;
       height: 180px;
       margin-bottom: 20px;
     }
-
-    .logo {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      box-shadow: 0 0 30px #00bfff, 0 0 60px #00bfff inset;
-      z-index: 2;
-      position: relative;
-    }
-
-    .logo-effect {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .logo-circle {
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,191,255,0.15) 40%, transparent 70%);
-      animation: ripple 5s infinite linear;
-      z-index: 1;
+      background: rgba(0, 255, 255, 0.1);
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulse 3s infinite;
     }
-
-    @keyframes ripple {
-      0% {
-        transform: rotate(0deg) scale(1);
-        opacity: 0.7;
-      }
-      50% {
-        transform: rotate(180deg) scale(1.1);
-        opacity: 0.9;
-      }
-      100% {
-        transform: rotate(360deg) scale(1);
-        opacity: 0.7;
-      }
+    .logo-circle img {
+      width: 90px;
+      height: 90px;
     }
-
+    @keyframes pulse {
+      0% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.2); }
+      50% { box-shadow: 0 0 60px rgba(0, 255, 255, 0.8); }
+      100% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.2); }
+    }
     h1 {
-      font-size: 2.5em;
-      background: linear-gradient(to right, #00c6ff, #0072ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-size: 2rem;
       margin: 10px 0;
     }
-
     p {
-      font-size: 1.1em;
-      color: #c4e3ff;
-      max-width: 480px;
-      margin-bottom: 20px;
+      font-size: 1rem;
+      color: #aaa;
+      max-width: 80%;
+      text-align: center;
     }
-
-    .button {
-      margin: 10px;
-      padding: 14px 30px;
+    button {
+      background: linear-gradient(to right, #00c6ff, #0072ff);
       border: none;
-      border-radius: 12px;
-      background: linear-gradient(145deg, #00d2ff, #3a47d5);
-      color: #fff;
-      font-size: 1em;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.4s ease;
-      box-shadow: 0 6px 15px rgba(0, 213, 255, 0.25);
-    }
-
-    .button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0, 213, 255, 0.4);
-    }
-
-    .wallet-address {
-      margin-top: 15px;
-      font-size: 0.95em;
-      color: #99ffcc;
-    }
-
-    .disconnect {
-      margin-top: 10px;
-      background: #ff3b3b;
       color: white;
-      padding: 10px 20px;
-      border: none;
+      font-size: 1rem;
+      padding: 12px 20px;
       border-radius: 8px;
       cursor: pointer;
-      display: none;
+      margin: 10px;
+      box-shadow: 0 0 12px #00ffff80;
+      transition: transform 0.2s ease;
     }
-
-    .disconnect:hover {
-      background: #cc2929;
+    button:hover {
+      transform: scale(1.05);
     }
-
-    .glow-ring {
-      position: absolute;
-      width: 250px;
-      height: 250px;
-      border-radius: 50%;
-      border: 2px solid rgba(0, 255, 255, 0.3);
-      animation: rotate 6s linear infinite;
-      top: -35px;
-      left: -35px;
-      z-index: 0;
-    }
-
-    @keyframes rotate {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
+    #status {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: #eee;
     }
   </style>
 </head>
 <body>
-  <div class="logo-wrapper">
-    <div class="glow-ring"></div>
-    <div class="logo-effect"></div>
-    <img src="earnova-logo.png" alt="Earnova Labs Logo" class="logo" />
+  <div class="logo-container">
+    <div class="logo-circle">
+      <img src="logo.png" alt="Earnova Logo" />
+    </div>
   </div>
   <h1>Welcome to Earnova Labs</h1>
   <p>Build your future with SIP, Staking & Rewards on RWX Token powered by Polygon Blockchain.</p>
 
-  <button class="button" id="connectButton" onclick="connectWallet()">Connect Polygon Wallet</button>
-  <div class="wallet-address" id="walletAddress">Wallet not connected</div>
-  <button class="disconnect" id="disconnectButton" onclick="disconnectWallet()">Disconnect</button>
-
-  <button class="button" onclick="location.href='sip.html'">View SIP Plans</button>
-  <button class="button" onclick="location.href='dashboard.html'">Open Dashboard</button>
+  <button onclick="connectWallet()" id="connectBtn">Connect Polygon Wallet</button>
+  <div id="status">Wallet not connected</div>
+  <button onclick="location.href='sip.html'">View SIP Plans</button>
+  <button onclick="location.href='dashboard.html'">Open Dashboard</button>
 
   <script>
-    let currentAccount = null;
-
+    let account;
     async function connectWallet() {
       if (window.ethereum) {
         try {
-          const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-          if (chainId !== '0x89') {
-            await window.ethereum.request({
-              method: 'wallet_switchEthereumChain',
-              params: [{ chainId: '0x89' }]
-            });
-          }
-
-          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-          currentAccount = accounts[0];
-          document.getElementById('walletAddress').innerText = 'Connected: ' + currentAccount.slice(0, 6) + '...' + currentAccount.slice(-4);
-          document.getElementById('disconnectButton').style.display = 'inline-block';
-          document.getElementById('connectButton').style.display = 'none';
+          await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: '0x89' }] }); // Polygon Mainnet
+          const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+          account = accounts[0];
+          document.getElementById('status').textContent = 'Wallet: ' + account.substring(0, 6) + '...' + account.slice(-4);
+          document.getElementById('connectBtn').textContent = 'Disconnect Wallet';
+          document.getElementById('connectBtn').onclick = disconnectWallet;
         } catch (error) {
-          alert("Connection failed: " + error.message);
+          alert('Please switch to Polygon network in MetaMask.');
         }
       } else {
-        alert("MetaMask not detected. Please install MetaMask to use this DApp.");
+        alert('MetaMask not found!');
       }
     }
-
     function disconnectWallet() {
-      currentAccount = null;
-      document.getElementById('walletAddress').innerText = 'Wallet not connected';
-      document.getElementById('connectButton').style.display = 'inline-block';
-      document.getElementById('disconnectButton').style.display = 'none';
+      account = null;
+      document.getElementById('status').textContent = 'Wallet not connected';
+      document.getElementById('connectBtn').textContent = 'Connect Polygon Wallet';
+      document.getElementById('connectBtn').onclick = connectWallet;
     }
   </script>
 </body>
