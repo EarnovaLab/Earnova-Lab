@@ -4,13 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Earnova Labs DApp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
-
     body {
       margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
       color: #ffffff;
       display: flex;
       flex-direction: column;
@@ -19,43 +18,45 @@
       min-height: 100vh;
       text-align: center;
       padding: 20px;
-      overflow-x: hidden;
     }
 
     .logo {
-      width: 120px;
+      width: 100px;
       margin-bottom: 20px;
-      filter: drop-shadow(0 0 20px #00ffe1);
+      border-radius: 50%;
+      box-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff inset;
     }
 
     h1 {
-      font-size: 2.5em;
-      color: #00ffe1;
+      font-size: 2.2em;
+      color: #00d2ff;
       margin: 0;
-      text-shadow: 0 0 10px #00ffe1;
     }
 
     p {
-      font-size: 1.1em;
+      font-size: 1em;
       margin-top: 10px;
       color: #cccccc;
+      max-width: 400px;
     }
 
     .button {
       margin-top: 20px;
       padding: 14px 28px;
       border: none;
-      border-radius: 10px;
-      background: #00ffe1;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #00bfff, #00d2ff);
       color: #000;
       font-size: 1em;
+      font-weight: 600;
       cursor: pointer;
-      transition: background 0.3s ease;
-      box-shadow: 0 0 10px #00ffe1, 0 0 20px #00ffe1 inset;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 213, 255, 0.2);
     }
 
     .button:hover {
-      background-color: #00ccbb;
+      transform: scale(1.05);
+      background: linear-gradient(90deg, #00aaff, #00c6ff);
     }
 
     .wallet-address {
@@ -83,7 +84,7 @@
 <body>
   <img src="earnova-logo.png" alt="Earnova Labs Logo" class="logo" />
   <h1>Welcome to Earnova Labs</h1>
-  <p>The Future of Crypto SIP, Staking & Rewards powered by RWX</p>
+  <p>Build your future with SIP, Staking & Rewards on RWX Token powered by Polygon Blockchain.</p>
 
   <button class="button" id="connectButton" onclick="connectWallet()">Connect Polygon Wallet</button>
   <div class="wallet-address" id="walletAddress">Wallet not connected</div>
@@ -99,7 +100,7 @@
       if (window.ethereum) {
         try {
           const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-          if (chainId !== '0x89') { // 137 = Polygon Mainnet
+          if (chainId !== '0x89') {
             await window.ethereum.request({
               method: 'wallet_switchEthereumChain',
               params: [{ chainId: '0x89' }]
