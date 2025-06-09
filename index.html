@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Earnova Labs</title>
+  <title>Earnova Labs DApp</title>
   <style>
     body {
       margin: 0;
@@ -14,8 +14,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       text-align: center;
+      padding: 20px;
     }
 
     .logo {
@@ -38,7 +39,7 @@
 
     .button {
       margin-top: 30px;
-      padding: 10px 20px;
+      padding: 12px 24px;
       border: none;
       border-radius: 8px;
       background-color: #00bfff;
@@ -50,12 +51,37 @@
     .button:hover {
       background-color: #0099cc;
     }
+
+    .wallet-address {
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #99ffcc;
+    }
   </style>
 </head>
 <body>
   <img src="earnova-logo.png" alt="Earnova Labs Logo" class="logo" />
   <h1>Welcome to Earnova Labs</h1>
   <p>Build your future with SIP, Staking & Rewards on RWX Token</p>
-  <button class="button">Launch DApp</button>
+  <button class="button" onclick="connectWallet()">Connect Wallet</button>
+  <div class="wallet-address" id="walletAddress">Wallet not connected</div>
+  <button class="button" onclick="location.href='sip.html'">View SIP Plans</button>
+  <button class="button" onclick="location.href='dashboard.html'">Open Dashboard</button>
+
+  <script>
+    async function connectWallet() {
+      if (window.ethereum) {
+        try {
+          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+          const address = accounts[0];
+          document.getElementById('walletAddress').innerText = 'Connected: ' + address.slice(0, 6) + '...' + address.slice(-4);
+        } catch (error) {
+          console.error("User denied wallet connection");
+        }
+      } else {
+        alert("MetaMask not detected. Please install it to use this DApp.");
+      }
+    }
+  </script>
 </body>
 </html>
