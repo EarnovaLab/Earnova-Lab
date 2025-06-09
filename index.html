@@ -1,69 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Earnova Labs - Join & Earn RWX</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Earnova Labs</title>
   <style>
-    body { font-family: Arial; padding: 20px; background: #f4f4f4; }
-    .box { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    input, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
-    button { background: #4CAF50; color: white; font-weight: bold; }
-    #walletAddress { font-size: 0.9em; word-break: break-all; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle, #0d0d0d, #1a1a1a);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .logo {
+      width: 120px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 20px #00bfff);
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #00bfff;
+      margin: 0;
+    }
+
+    p {
+      font-size: 1em;
+      margin-top: 10px;
+      color: #cccccc;
+    }
+
+    .button {
+      margin-top: 30px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #00bfff;
+      color: #fff;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #0099cc;
+    }
   </style>
 </head>
 <body>
-  <div class="box">
-    <h2>Join & Earn RWX</h2>
-    <label>Wallet Address:</label>
-    <p id="walletAddress">Not connected</p>
-
-    <label>Referred By (wallet):</label>
-    <input type="text" id="referrer" readonly>
-
-    <label>Username:</label>
-    <input type="text" id="username" placeholder="Choose a username">
-
-    <button onclick="connectWallet()">🔗 Connect Wallet</button>
-    <button onclick="submitJoin()">🚀 Join Now</button>
-  </div>
-
-  <script>
-    let userAddress = "";
-    const ref = new URLSearchParams(window.location.search).get('ref');
-    document.getElementById("referrer").value = ref || "None";
-
-    async function connectWallet() {
-      if (window.ethereum) {
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        userAddress = accounts[0];
-        document.getElementById("walletAddress").innerText = userAddress;
-      } else {
-        alert("Please install Metamask!");
-      }
-    }
-
-    function submitJoin() {
-      const username = document.getElementById("username").value;
-      const referrer = document.getElementById("referrer").value;
-
-      if (!userAddress) {
-        alert("Connect your wallet first!");
-        return;
-      }
-
-      if (!username) {
-        alert("Enter a username!");
-        return;
-      }
-
-      const url = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec"; // 🔁 Replace with your own
-      fetch(`${url}?wallet=${userAddress}&referrer=${referrer}&username=${username}`)
-        .then(res => res.text())
-        .then(data => {
-          alert("✅ Registered Successfully!");
-        });
-    }
-  </script>
+  <img src="earnova-logo.png" alt="Earnova Labs Logo" class="logo" />
+  <h1>Welcome to Earnova Labs</h1>
+  <p>Build your future with SIP, Staking & Rewards on RWX Token</p>
+  <button class="button">Launch DApp</button>
 </body>
 </html>
