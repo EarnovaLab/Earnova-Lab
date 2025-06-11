@@ -29,10 +29,7 @@
     .menu-icon {
       font-size: 24px;
       cursor: pointer;
-    }
-
-    .logo {
-      max-height: 50px;
+      user-select: none;
     }
 
     .start-btn {
@@ -42,6 +39,33 @@
       border: none;
       border-radius: 6px;
       font-weight: bold;
+      cursor: pointer;
+    }
+
+    nav.sidebar {
+      position: fixed;
+      left: -250px;
+      top: 0;
+      width: 250px;
+      height: 100%;
+      background: #20242c;
+      padding: 20px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+
+    nav.sidebar.active {
+      left: 0;
+    }
+
+    nav.sidebar ul {
+      list-style: none;
+      margin-top: 40px;
+    }
+
+    nav.sidebar ul li {
+      margin-bottom: 20px;
+      color: #ccc;
       cursor: pointer;
     }
 
@@ -88,11 +112,11 @@
     }
 
     .token-address {
-      margin-top: 10px;
+      margin: 12px auto 40px;
       font-size: 14px;
       word-break: break-all;
       background: #252a33;
-      padding: 10px;
+      padding: 10px 40px 10px 10px;
       border-radius: 6px;
       display: inline-block;
       position: relative;
@@ -106,15 +130,10 @@
       border: none;
       color: #00ffff;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 18px;
     }
 
     @media (max-width: 600px) {
-      header {
-        flex-direction: row;
-        padding: 10px 15px;
-      }
-
       .start-btn {
         padding: 6px 12px;
         font-size: 14px;
@@ -123,21 +142,34 @@
       .main-logo {
         max-width: 150px;
       }
+
+      .description {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="menu-icon">☰</div>
-  <img src="EARNOVALAB-logo.png" alt="Earnova Labs Logo" class="logo" />
+  <div class="menu-icon" onclick="toggleSidebar()">☰</div>
   <button class="start-btn">Start Earning</button>
 </header>
+
+<nav class="sidebar" id="sidebarNav">
+  <ul>
+    <li>Home</li>
+    <li>About</li>
+    <li>Staking</li>
+    <li>Referral</li>
+    <li>Tokenomics</li>
+  </ul>
+</nav>
 
 <div class="content">
   <img src="EARNOVALAB-logo.png" alt="Earnova Labs Main Logo" class="main-logo" />
   <p class="description">
-    Earnova Labs ek futuristic Web3 ecosystem hai jahan users RWX token ke through rewards kama sakte hain — staking, referral aur community building ke zariye. Secure, decentralized aur youth-friendly banane ke liye hi humne is platform ko design kiya hai.
+    Earnova Labs is a futuristic Web3 ecosystem designed to empower users with reward-based opportunities using the RWX token. Through staking, referrals, and a community-driven platform, users can grow wealth in a decentralized and youth-oriented environment.
   </p>
 
   <div class="rwx-container">
@@ -152,10 +184,14 @@
 </div>
 
 <script>
+  function toggleSidebar() {
+    document.getElementById("sidebarNav").classList.toggle("active");
+  }
+
   function copyAddress() {
     const address = "0x5bA35e1D0885fD95d821a4aee30643930110b28d";
     navigator.clipboard.writeText(address).then(() => {
-      alert("RWX Token address copied!");
+      alert("RWX Token address copied to clipboard!");
     });
   }
 </script>
