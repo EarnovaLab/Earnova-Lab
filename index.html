@@ -17,13 +17,12 @@
       color: #fff;
     }
 
-    /* Navbar */
     .navbar {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       padding: 1rem;
       background-color: #1e293b;
-      justify-content: space-between;
     }
 
     .menu-btn {
@@ -34,10 +33,32 @@
       cursor: pointer;
     }
 
-    .logo-text {
-      margin-left: 1rem;
-      font-size: 1.5rem;
-      font-weight: bold;
+    .start-btn {
+      background-color: #22c55e;
+      color: black;
+      font-weight: 600;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.2s ease;
+    }
+
+    .start-btn:hover {
+      background-color: #16a34a;
+    }
+
+    .center-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 3rem 0;
+    }
+
+    .center-logo img {
+      width: 180px;
+      max-width: 80%;
     }
 
     /* Sidebar */
@@ -95,12 +116,16 @@
     }
 
     @media (min-width: 768px) {
-      .logo-text {
-        font-size: 2rem;
+      .start-btn {
+        font-size: 1.1rem;
       }
 
       .menu-links a {
         font-size: 1.3rem;
+      }
+
+      .center-logo img {
+        width: 220px;
       }
     }
   </style>
@@ -108,10 +133,13 @@
 <body>
   <!-- Navbar -->
   <div class="navbar">
-    <div style="display: flex; align-items: center;">
-      <button class="menu-btn" id="openMenu">&#9776;</button>
-      <h2 class="logo-text">Earnova Labs</h2>
-    </div>
+    <button class="menu-btn" id="openMenu">&#9776;</button>
+    <button class="start-btn">Start Earning</button>
+  </div>
+
+  <!-- Center Logo -->
+  <div class="center-logo">
+    <img src="EARNOVALAB-logo.png" alt="Earnova Labs Logo" />
   </div>
 
   <!-- Sidebar -->
@@ -142,3 +170,4 @@
   </script>
 </body>
 </html>
+
