@@ -4,7 +4,101 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Earnova Labs</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0f172a;
+      color: #fff;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      background-color: #1e293b;
+    }
+
+    .menu-btn {
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .logo-text {
+      margin-left: 1rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #1e293b;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 999;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar.active {
+      transform: translateX(0);
+    }
+
+    .back-btn {
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      margin-bottom: 2rem;
+      align-self: flex-start;
+    }
+
+    .menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .menu-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2rem;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      background-color: #334155;
+      transition: background 0.2s ease;
+    }
+
+    .menu-links a:hover {
+      background-color: #475569;
+    }
+
+    @media (min-width: 768px) {
+      .logo-text {
+        font-size: 2rem;
+      }
+
+      .menu-links a {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Navbar -->
@@ -20,12 +114,24 @@
       <a href="#">Dashboard</a>
       <a href="#">Buy RWX</a>
       <a href="#">Sell RWX</a>
-      <a href="#">Stake</a>
+      <a href="#">Staking</a>
       <a href="#">Referrals</a>
       <a href="#">Withdraw</a>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const openMenu = document.getElementById('openMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    const sidebar = document.getElementById('sidebar');
+
+    openMenu.addEventListener('click', () => {
+      sidebar.classList.add('active');
+    });
+
+    closeMenu.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+    });
+  </script>
 </body>
 </html>
