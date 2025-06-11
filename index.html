@@ -3,83 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RWX Sidebar Menu</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #0f172a;
-      color: #fff;
-    }
-
-    /* Top Navbar */
-    .navbar {
-      display: flex;
-      align-items: center;
-      padding: 1rem;
-      background-color: #1e293b;
-    }
-
-    .menu-btn {
-      font-size: 1.8rem;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 100%;
-      height: 100%;
-      background-color: #1e293b;
-      padding: 1.5rem;
-      transition: right 0.3s ease;
-      z-index: 999;
-    }
-
-    .sidebar.active {
-      right: 0;
-    }
-
-    .back-btn {
-      font-size: 1.5rem;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-      margin-bottom: 2rem;
-    }
-
-    .menu-links {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .menu-links a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 1.2rem;
-      padding: 0.5rem;
-      border-radius: 8px;
-      background-color: #334155;
-    }
-
-    @media(min-width: 768px) {
-      .sidebar {
-        width: 400px;
-      }
-    }
-  </style>
+  <title>Earnova Labs</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Navbar -->
   <div class="navbar">
     <button class="menu-btn" id="openMenu">&#9776;</button>
-    <h2 style="margin-left: 1rem;">Earnova Labs</h2>
+    <h2 class="logo-text">Earnova Labs</h2>
   </div>
 
   <!-- Sidebar -->
@@ -95,19 +26,6 @@
     </div>
   </div>
 
-  <script>
-    const openMenu = document.getElementById('openMenu');
-    const closeMenu = document.getElementById('closeMenu');
-    const sidebar = document.getElementById('sidebar');
-
-    openMenu.addEventListener('click', () => {
-      sidebar.classList.add('active');
-    });
-
-    closeMenu.addEventListener('click', () => {
-      sidebar.classList.remove('active');
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
-
