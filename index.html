@@ -23,6 +23,7 @@
       align-items: center;
       padding: 1rem;
       background-color: #1e293b;
+      justify-content: space-between;
     }
 
     .menu-btn {
@@ -43,7 +44,7 @@
     .sidebar {
       position: fixed;
       top: 0;
-      left: 0;
+      right: 0;
       width: 100vw;
       height: 100vh;
       background-color: #1e293b;
@@ -60,33 +61,37 @@
     }
 
     .back-btn {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       background: none;
       border: none;
       color: white;
       cursor: pointer;
-      margin-bottom: 2rem;
       align-self: flex-start;
+      margin-bottom: 2rem;
     }
 
     .menu-links {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.2rem;
     }
 
     .menu-links a {
       color: #fff;
       text-decoration: none;
-      font-size: 1.2rem;
-      padding: 0.75rem 1rem;
-      border-radius: 10px;
-      background-color: #334155;
-      transition: background 0.2s ease;
+      font-size: 1.1rem;
+      padding: 0.9rem 1.2rem;
+      border-radius: 12px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      transition: all 0.2s ease-in-out;
     }
 
     .menu-links a:hover {
-      background-color: #475569;
+      background-color: #22c55e;
+      color: #000;
+      font-weight: 500;
+      border-color: #22c55e;
     }
 
     @media (min-width: 768px) {
@@ -95,7 +100,7 @@
       }
 
       .menu-links a {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
       }
     }
   </style>
@@ -103,13 +108,15 @@
 <body>
   <!-- Navbar -->
   <div class="navbar">
-    <button class="menu-btn" id="openMenu">&#9776;</button>
-    <h2 class="logo-text">Earnova Labs</h2>
+    <div style="display: flex; align-items: center;">
+      <button class="menu-btn" id="openMenu">&#9776;</button>
+      <h2 class="logo-text">Earnova Labs</h2>
+    </div>
   </div>
 
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
-    <button class="back-btn" id="closeMenu">&larr; Back</button>
+    <button class="back-btn" id="closeMenu">&#8592;</button>
     <div class="menu-links">
       <a href="#">Dashboard</a>
       <a href="#">Buy RWX</a>
