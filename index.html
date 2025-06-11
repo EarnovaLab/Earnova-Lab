@@ -4,197 +4,244 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Earnova Labs</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #0e1015;
-      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0f172a;
+      color: #fff;
     }
 
-    header {
+    .navbar {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 15px 20px;
-      background: #1a1d24;
+      justify-content: space-between;
+      padding: 1rem;
+      background-color: #1e293b;
     }
 
-    .menu-icon {
-      font-size: 24px;
+    .menu-btn {
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: white;
       cursor: pointer;
-      user-select: none;
     }
 
     .start-btn {
-      background: #1e90ff;
-      color: white;
-      padding: 8px 16px;
+      background-color: #22c55e;
+      color: black;
+      font-weight: 600;
+      padding: 0.6rem 1rem;
       border: none;
-      border-radius: 6px;
-      font-weight: bold;
+      border-radius: 10px;
       cursor: pointer;
+      font-size: 1rem;
+      transition: 0.2s ease;
     }
 
-    nav.sidebar {
-      position: fixed;
-      left: -250px;
-      top: 0;
-      width: 250px;
-      height: 100%;
-      background: #20242c;
-      padding: 20px;
-      transition: left 0.3s ease;
-      z-index: 1000;
+    .start-btn:hover {
+      background-color: #16a34a;
     }
 
-    nav.sidebar.active {
-      left: 0;
+    .center-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 3rem 0 1rem;
     }
 
-    nav.sidebar ul {
-      list-style: none;
-      margin-top: 40px;
+    .center-logo img {
+      width: 180px;
+      max-width: 80%;
     }
 
-    nav.sidebar ul li {
-      margin-bottom: 20px;
-      color: #ccc;
-      cursor: pointer;
-    }
-
-    .content {
+    .about-text {
       text-align: center;
-      padding: 30px 20px;
+      padding: 0 1.5rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 0 auto 2rem;
     }
 
-    .main-logo {
-      max-width: 200px;
-      margin-bottom: 20px;
+    .rwx-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
     }
 
-    .description {
-      max-width: 600px;
-      margin: 0 auto 40px;
-      font-size: 16px;
-      color: #ccc;
-    }
-
-    .rwx-container {
-      position: relative;
-      margin: 20px auto;
+    .rotating {
+      border-radius: 50%;
+      border: 3px solid #22c55e;
+      padding: 1.2rem;
+      animation: rotate 6s linear infinite;
       width: 130px;
       height: 130px;
-      animation: rotate 6s linear infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #0f172a;
     }
 
-    .rwx-container img {
-      width: 100%;
-      border-radius: 50%;
+    .rotating img {
+      width: 70px;
     }
 
     @keyframes rotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      100% {
+        transform: rotate(360deg);
+      }
     }
 
     .rwx-label {
-      margin-top: 10px;
-      font-weight: bold;
-      color: #00ffff;
-      font-size: 18px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #22c55e;
     }
 
-    .token-address {
-      margin: 12px auto 40px;
-      font-size: 14px;
+    .contract-box {
+      background: #1e293b;
+      padding: 0.7rem 1rem;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
       word-break: break-all;
-      background: #252a33;
-      padding: 10px 40px 10px 10px;
-      border-radius: 6px;
-      display: inline-block;
-      position: relative;
     }
 
     .copy-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: transparent;
+      background: none;
       border: none;
-      color: #00ffff;
       cursor: pointer;
-      font-size: 18px;
+      color: #22c55e;
+      font-size: 1.1rem;
     }
 
-    @media (max-width: 600px) {
-      .start-btn {
-        padding: 6px 12px;
-        font-size: 14px;
-      }
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #1e293b;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 999;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
 
-      .main-logo {
-        max-width: 150px;
-      }
+    .sidebar.active {
+      transform: translateX(0);
+    }
 
-      .description {
-        font-size: 14px;
-      }
+    .back-btn {
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      align-self: flex-start;
+      margin-bottom: 2rem;
+    }
+
+    .menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .menu-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 0.9rem 1.2rem;
+      border-radius: 12px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .menu-links a:hover {
+      background-color: #22c55e;
+      color: #000;
+      font-weight: 500;
+      border-color: #22c55e;
+    }
+
+    @media (min-width: 768px) {
+      .start-btn { font-size: 1.1rem; }
+      .menu-links a { font-size: 1.3rem; }
+      .center-logo img { width: 220px; }
     }
   </style>
 </head>
 <body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <button class="menu-btn" id="openMenu">&#9776;</button>
+    <button class="start-btn">Start Earning</button>
+  </div>
 
-<header>
-  <div class="menu-icon" onclick="toggleSidebar()">☰</div>
-  <button class="start-btn">Start Earning</button>
-</header>
+  <!-- Center Logo -->
+  <div class="center-logo">
+    <img src="EARNOVALAB-logo.png" alt="Earnova Labs Logo" />
+  </div>
 
-<nav class="sidebar" id="sidebarNav">
-  <ul>
-    <li>Home</li>
-    <li>About</li>
-    <li>Staking</li>
-    <li>Referral</li>
-    <li>Tokenomics</li>
-  </ul>
-</nav>
-
-<div class="content">
-  <img src="EARNOVALAB-logo.png" alt="Earnova Labs Main Logo" class="main-logo" />
-  <p class="description">
-    Earnova Labs is a futuristic Web3 ecosystem designed to empower users with reward-based opportunities using the RWX token. Through staking, referrals, and a community-driven platform, users can grow wealth in a decentralized and youth-oriented environment.
+  <!-- About Section -->
+  <p class="about-text">
+    Earnova Labs is a futuristic Web3 ecosystem where users can earn rewards through the RWX token — via staking, referrals, and community building. It is designed to be secure, decentralized, and youth-friendly.
   </p>
 
-  <div class="rwx-container">
-    <img src="RWX-logo.png" alt="RWX Token Logo" />
+  <!-- RWX Section -->
+  <div class="rwx-section">
+    <div class="rotating">
+      <img src="RWX-logo.png" alt="RWX Token" />
+    </div>
+    <div class="rwx-label">RWX Token</div>
+    <div class="contract-box">
+      <span id="tokenAddress">0x5bA35e1D0885fD95d821a4aee30643930110b28d</span>
+      <button class="copy-btn" onclick="copyAddress()">📋</button>
+    </div>
   </div>
-  <div class="rwx-label">RWX Token</div>
 
-  <div class="token-address" id="tokenAddressBox">
-    0x5bA35e1D0885fD95d821a4aee30643930110b28d
-    <button class="copy-btn" onclick="copyAddress()">📋</button>
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <button class="back-btn" id="closeMenu">&#8592;</button>
+    <div class="menu-links">
+      <a href="#">Dashboard</a>
+      <a href="#">Buy RWX</a>
+      <a href="#">Sell RWX</a>
+      <a href="#">Staking</a>
+      <a href="#">Referrals</a>
+      <a href="#">Withdraw</a>
+    </div>
   </div>
-</div>
 
-<script>
-  function toggleSidebar() {
-    document.getElementById("sidebarNav").classList.toggle("active");
-  }
+  <script>
+    const openMenu = document.getElementById('openMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    const sidebar = document.getElementById('sidebar');
 
-  function copyAddress() {
-    const address = "0x5bA35e1D0885fD95d821a4aee30643930110b28d";
-    navigator.clipboard.writeText(address).then(() => {
-      alert("RWX Token address copied to clipboard!");
+    openMenu.addEventListener('click', () => {
+      sidebar.classList.add('active');
     });
-  }
-</script>
 
+    closeMenu.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+    });
+
+    function copyAddress() {
+      const address = document.getElementById("tokenAddress").textContent;
+      navigator.clipboard.writeText(address);
+      alert("RWX Token Address Copied!");
+    }
+  </script>
 </body>
 </html>
