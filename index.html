@@ -3,119 +3,111 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Earnova Labs</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <title>RWX Sidebar Menu</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
-      color: #00ffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0f172a;
+      color: #fff;
     }
-    .logo-container {
-      position: relative;
-      width: 180px;
-      height: 180px;
-      margin-bottom: 20px;
-    }
-    .logo-circle {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: rgba(0, 255, 255, 0.1);
-      box-shadow: 0 0 40px rgba(0, 255, 255, 0.7);
+
+    /* Top Navbar */
+    .navbar {
       display: flex;
       align-items: center;
-      justify-content: center;
-      animation: pulse 3s infinite;
+      padding: 1rem;
+      background-color: #1e293b;
     }
-    .logo-circle img {
-      width: 90px;
-      height: 90px;
-    }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.2); }
-      50% { box-shadow: 0 0 60px rgba(0, 255, 255, 0.8); }
-      100% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.2); }
-    }
-    h1 {
-      font-size: 2rem;
-      margin: 10px 0;
-    }
-    p {
-      font-size: 1rem;
-      color: #aaa;
-      max-width: 80%;
-      text-align: center;
-    }
-    button {
-      background: linear-gradient(to right, #00c6ff, #0072ff);
+
+    .menu-btn {
+      font-size: 1.8rem;
+      background: none;
       border: none;
       color: white;
-      font-size: 1rem;
-      padding: 12px 20px;
-      border-radius: 8px;
       cursor: pointer;
-      margin: 10px;
-      box-shadow: 0 0 12px #00ffff80;
-      transition: transform 0.2s ease;
     }
-    button:hover {
-      transform: scale(1.05);
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      height: 100%;
+      background-color: #1e293b;
+      padding: 1.5rem;
+      transition: right 0.3s ease;
+      z-index: 999;
     }
-    #status {
-      margin-top: 8px;
-      font-size: 0.9rem;
-      color: #eee;
+
+    .sidebar.active {
+      right: 0;
+    }
+
+    .back-btn {
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      margin-bottom: 2rem;
+    }
+
+    .menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .menu-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+      background-color: #334155;
+    }
+
+    @media(min-width: 768px) {
+      .sidebar {
+        width: 400px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="logo-container">
-    <div class="logo-circle">
-      <img src="logo.png" alt="Earnova Logo" />
+  <div class="navbar">
+    <button class="menu-btn" id="openMenu">&#9776;</button>
+    <h2 style="margin-left: 1rem;">Earnova Labs</h2>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <button class="back-btn" id="closeMenu">&larr; Back</button>
+    <div class="menu-links">
+      <a href="#">Dashboard</a>
+      <a href="#">Buy RWX</a>
+      <a href="#">Sell RWX</a>
+      <a href="#">Stake</a>
+      <a href="#">Referrals</a>
+      <a href="#">Withdraw</a>
     </div>
   </div>
-  <h1>Welcome to Earnova Labs</h1>
-  <p>Build your future with SIP, Staking & Rewards on RWX Token powered by Polygon Blockchain.</p>
-
-  <button onclick="connectWallet()" id="connectBtn">Connect Polygon Wallet</button>
-  <div id="status">Wallet not connected</div>
-  <button onclick="location.href='sip.html'">View SIP Plans</button>
-  <button onclick="location.href='dashboard.html'">Open Dashboard</button>
 
   <script>
-    let account;
-    async function connectWallet() {
-      if (window.ethereum) {
-        try {
-          await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: '0x89' }] }); // Polygon Mainnet
-          const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-          account = accounts[0];
-          document.getElementById('status').textContent = 'Wallet: ' + account.substring(0, 6) + '...' + account.slice(-4);
-          document.getElementById('connectBtn').textContent = 'Disconnect Wallet';
-          document.getElementById('connectBtn').onclick = disconnectWallet;
-        } catch (error) {
-          alert('Please switch to Polygon network in MetaMask.');
-        }
-      } else {
-        alert('MetaMask not found!');
-      }
-    }
-    function disconnectWallet() {
-      account = null;
-      document.getElementById('status').textContent = 'Wallet not connected';
-      document.getElementById('connectBtn').textContent = 'Connect Polygon Wallet';
-      document.getElementById('connectBtn').onclick = connectWallet;
-    }
+    const openMenu = document.getElementById('openMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    const sidebar = document.getElementById('sidebar');
+
+    openMenu.addEventListener('click', () => {
+      sidebar.classList.add('active');
+    });
+
+    closeMenu.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+    });
   </script>
 </body>
 </html>
+
