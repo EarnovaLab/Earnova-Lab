@@ -42,10 +42,16 @@
     .about-text {
       text-align: center;
       padding: 0 1.5rem;
-      font-size: 1.1rem;
       line-height: 1.6;
       max-width: 700px;
       margin: 2rem auto;
+      font-size: 0.95rem;
+    }
+
+    @media (min-width: 768px) {
+      .about-text {
+        font-size: 0.9rem;
+      }
     }
 
     .rwx-section {
@@ -63,6 +69,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .rotating {
+        width: 170px;
+        height: 170px;
+      }
     }
 
     .rotating img {
@@ -87,11 +100,18 @@
       background: #1e293b;
       padding: 0.7rem 1rem;
       border-radius: 12px;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       display: flex;
       align-items: center;
       gap: 0.6rem;
       word-break: break-all;
+    }
+
+    @media (min-width: 768px) {
+      .contract-box {
+        font-size: 1.1rem;
+        padding: 1rem 1.5rem;
+      }
     }
 
     .copy-btn {
@@ -104,7 +124,7 @@
 
     .buy-btn {
       margin-top: 1rem;
-      padding: 0.7rem 1.5rem;
+      padding: 0.8rem 2rem;
       background-color: #22c55e;
       color: black;
       font-weight: 600;
@@ -117,6 +137,13 @@
 
     .buy-btn:hover {
       background-color: #16a34a;
+    }
+
+    @media (min-width: 768px) {
+      .buy-btn {
+        font-size: 1.3rem;
+        padding: 1rem 2.5rem;
+      }
     }
 
     /* Sidebar */
@@ -185,7 +212,7 @@
     <img src="EARNOVALAB-logo.png" alt="Earnova Labs Logo" class="logo" />
   </div>
 
-  <!-- RWX Section (Shifted to Top) -->
+  <!-- RWX Section -->
   <div class="rwx-section">
     <div class="rotating">
       <img src="RWX-logo.png" alt="RWX Token" />
@@ -198,7 +225,7 @@
     <button class="buy-btn">Buy Now</button>
   </div>
 
-  <!-- About Section (Now Below Buy Button) -->
+  <!-- About Section -->
   <p class="about-text">
     Earnova Labs is a futuristic Web3 ecosystem where users can earn rewards through the RWX token — via staking, referrals, SIP system, and community building. The RWX token is deployed on the secure and scalable Polygon blockchain. It is designed to be decentralized, youth-friendly, and future-ready.
   </p>
