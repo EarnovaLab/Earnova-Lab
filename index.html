@@ -15,9 +15,10 @@
     .navbar {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       padding: 1rem;
       background-color: #1e293b;
+      gap: 1rem;
     }
 
     .menu-btn {
@@ -28,20 +29,46 @@
       cursor: pointer;
     }
 
-    .start-btn {
-      background-color: #22c55e;
-      color: black;
-      font-weight: 600;
-      padding: 0.6rem 1rem;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: 0.2s ease;
+    .logo-wrapper {
+      position: relative;
+      width: 50px;
+      height: 50px;
     }
 
-    .start-btn:hover {
-      background-color: #16a34a;
+    .logo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+      z-index: 2;
+      position: relative;
+    }
+
+    .starlight {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 70px;
+      height: 70px;
+      margin-top: -35px;
+      margin-left: -35px;
+      border-radius: 50%;
+      border: 2px solid;
+      animation: rotateLight 8s linear infinite, colorChange 5s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes rotateLight {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(-360deg); }
+    }
+
+    @keyframes colorChange {
+      0% { border-color: #22c55e; }
+      25% { border-color: #3b82f6; }
+      50% { border-color: #eab308; }
+      75% { border-color: #ec4899; }
+      100% { border-color: #22c55e; }
     }
 
     .center-logo {
@@ -174,7 +201,16 @@
     }
 
     @media (min-width: 768px) {
-      .start-btn { font-size: 1.1rem; }
+      .logo-wrapper {
+        width: 60px;
+        height: 60px;
+      }
+      .starlight {
+        width: 80px;
+        height: 80px;
+        margin-top: -40px;
+        margin-left: -40px;
+      }
       .menu-links a { font-size: 1.3rem; }
       .center-logo img { width: 220px; }
     }
@@ -184,7 +220,11 @@
   <!-- Navbar -->
   <div class="navbar">
     <button class="menu-btn" id="openMenu">&#9776;</button>
-    <button class="start-btn">Start Earning</button>
+
+    <div class="logo-wrapper">
+      <img src="EARNOVALAB-logo.png" alt="Earnova Labs Logo" />
+      <div class="starlight"></div>
+    </div>
   </div>
 
   <!-- Center Logo -->
