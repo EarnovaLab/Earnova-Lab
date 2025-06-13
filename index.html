@@ -38,25 +38,13 @@
       }
     }
 
-    .center-logo {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 3rem 0 1rem;
-    }
-
-    .center-logo img {
-      width: 180px;
-      max-width: 80%;
-    }
-
     .about-text {
       text-align: center;
       padding: 0 1.5rem;
       font-size: 1.1rem;
       line-height: 1.6;
       max-width: 700px;
-      margin: 0 auto 2rem;
+      margin: 2rem auto;
     }
 
     .rwx-section {
@@ -64,13 +52,13 @@
       flex-direction: column;
       align-items: center;
       gap: 1rem;
-      margin-top: 1rem;
+      margin-top: 2rem;
     }
 
     .rotating {
       animation: rotate 15s linear infinite;
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -89,7 +77,7 @@
     }
 
     .rwx-label {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 600;
       color: #22c55e;
     }
@@ -111,6 +99,23 @@
       cursor: pointer;
       color: #22c55e;
       font-size: 1.1rem;
+    }
+
+    .buy-btn {
+      margin-top: 1rem;
+      padding: 0.7rem 1.5rem;
+      background-color: #22c55e;
+      color: black;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.2s ease;
+    }
+
+    .buy-btn:hover {
+      background-color: #16a34a;
     }
 
     /* Sidebar */
@@ -169,7 +174,6 @@
 
     @media (min-width: 768px) {
       .menu-links a { font-size: 1.3rem; }
-      .center-logo img { width: 220px; }
     }
   </style>
 </head>
@@ -180,17 +184,7 @@
     <img src="EARNOVALAB-logo.png" alt="Earnova Labs Logo" class="logo" />
   </div>
 
-  <!-- Center Logo -->
-  <div class="center-logo">
-    <img src="EARNOVALAB-logo.png" alt="Earnova Labs Logo" />
-  </div>
-
-  <!-- About Section -->
-  <p class="about-text">
-    Earnova Labs is a futuristic Web3 ecosystem where users can earn rewards through the RWX token — via staking, referrals, SIP system, and community building. The RWX token is deployed on the secure and scalable Polygon blockchain. It is designed to be decentralized, youth-friendly, and future-ready.
-  </p>
-
-  <!-- RWX Section -->
+  <!-- RWX Section (Shifted to Top) -->
   <div class="rwx-section">
     <div class="rotating">
       <img src="RWX-logo.png" alt="RWX Token" />
@@ -200,7 +194,13 @@
       <span id="tokenAddress">0x5bA35e1D0885fD95d821a4aee30643930110b28d</span>
       <button class="copy-btn" onclick="copyAddress()">📋</button>
     </div>
+    <button class="buy-btn">Buy Now</button>
   </div>
+
+  <!-- About Section (Now Below Buy Button) -->
+  <p class="about-text">
+    Earnova Labs is a futuristic Web3 ecosystem where users can earn rewards through the RWX token — via staking, referrals, SIP system, and community building. The RWX token is deployed on the secure and scalable Polygon blockchain. It is designed to be decentralized, youth-friendly, and future-ready.
+  </p>
 
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
