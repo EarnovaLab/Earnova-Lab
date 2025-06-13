@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Earnova Labs</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Montserrat', sans-serif;
       background-color: #0f172a;
       color: #fff;
+      padding-bottom: 60px; /* space for bottom nav */
     }
 
     .navbar {
@@ -203,6 +205,40 @@
     @media (min-width: 768px) {
       .menu-links a { font-size: 1.3rem; }
     }
+
+    /* Bottom Navigation Bar */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #1e293b;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0.4rem 0;
+      border-top: 1px solid #334155;
+      z-index: 999;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+      font-size: 1.2rem;
+    }
+
+    .nav-item i {
+      font-size: 1.4rem;
+      color: #cbd5e1;
+    }
+
+    .nav-item span {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-top: 0.2rem;
+    }
   </style>
 </head>
 <body>
@@ -240,6 +276,26 @@
       <a href="#">Staking</a>
       <a href="#">Referrals</a>
       <a href="#">Withdraw</a>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <div class="nav-item">
+      <i class="fas fa-house"></i>
+      <span>Home</span>
+    </div>
+    <div class="nav-item">
+      <i class="fas fa-wallet"></i>
+      <span>Wallet</span>
+    </div>
+    <div class="nav-item">
+      <i class="fas fa-arrows-up-down"></i>
+      <span>SIP</span>
+    </div>
+    <div class="nav-item">
+      <i class="fas fa-user"></i>
+      <span>Profile</span>
     </div>
   </div>
 
