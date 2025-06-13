@@ -4,11 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Earnova Labs</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Poppins', sans-serif;
       background-color: #0f172a;
       color: #fff;
     }
@@ -42,16 +41,10 @@
     .about-text {
       text-align: center;
       padding: 0 1.5rem;
+      font-size: 1.1rem;
       line-height: 1.6;
       max-width: 700px;
       margin: 2rem auto;
-      font-size: 0.95rem;
-    }
-
-    @media (min-width: 768px) {
-      .about-text {
-        font-size: 0.9rem;
-      }
     }
 
     .rwx-section {
@@ -69,13 +62,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-
-    @media (min-width: 768px) {
-      .rotating {
-        width: 170px;
-        height: 170px;
-      }
     }
 
     .rotating img {
@@ -100,18 +86,11 @@
       background: #1e293b;
       padding: 0.7rem 1rem;
       border-radius: 12px;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       display: flex;
       align-items: center;
       gap: 0.6rem;
       word-break: break-all;
-    }
-
-    @media (min-width: 768px) {
-      .contract-box {
-        font-size: 1.1rem;
-        padding: 1rem 1.5rem;
-      }
     }
 
     .copy-btn {
@@ -124,7 +103,7 @@
 
     .buy-btn {
       margin-top: 1rem;
-      padding: 0.8rem 2rem;
+      padding: 0.7rem 1.5rem;
       background-color: #22c55e;
       color: black;
       font-weight: 600;
@@ -137,13 +116,6 @@
 
     .buy-btn:hover {
       background-color: #16a34a;
-    }
-
-    @media (min-width: 768px) {
-      .buy-btn {
-        font-size: 1.3rem;
-        padding: 1rem 2.5rem;
-      }
     }
 
     /* Sidebar */
@@ -212,7 +184,7 @@
     <img src="EARNOVALAB-logo.png" alt="Earnova Labs Logo" class="logo" />
   </div>
 
-  <!-- RWX Section -->
+  <!-- RWX Section (Shifted to Top) -->
   <div class="rwx-section">
     <div class="rotating">
       <img src="RWX-logo.png" alt="RWX Token" />
@@ -225,7 +197,7 @@
     <button class="buy-btn">Buy Now</button>
   </div>
 
-  <!-- About Section -->
+  <!-- About Section (Now Below Buy Button) -->
   <p class="about-text">
     Earnova Labs is a futuristic Web3 ecosystem where users can earn rewards through the RWX token — via staking, referrals, SIP system, and community building. The RWX token is deployed on the secure and scalable Polygon blockchain. It is designed to be decentralized, youth-friendly, and future-ready.
   </p>
@@ -240,6 +212,20 @@
       <a href="#">Staking</a>
       <a href="#">Referrals</a>
       <a href="#">Withdraw</a>
+    </div>
+  </div>
+
+  <!-- Project Info Section -->
+  <div style="background-color: #1e293b; padding: 2rem 1rem; margin-top: 2rem;">
+    <h2 style="text-align: center; font-size: 1.6rem; color: #22c55e; margin-bottom: 1rem;">Why RWX Token?</h2>
+    <div style="max-width: 800px; margin: auto; font-size: 0.95rem; line-height: 1.6;">
+      <ul style="list-style-type: '✅ '; padding-left: 1rem;">
+        <li>🔗 Built on Polygon for low fees & high speed</li>
+        <li>💸 Earn passive income via staking & SIP</li>
+        <li>👥 Powerful referral reward system</li>
+        <li>🔥 Auto-burning mechanism for deflation</li>
+        <li>📈 Future-ready for DEX, NFT & community expansion</li>
+      </ul>
     </div>
   </div>
 
